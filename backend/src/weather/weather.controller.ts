@@ -13,4 +13,10 @@ export class WeatherController {
     getRealtimeWeather() {
         return this.weatherService.getRealtimeWeather();
     }
+
+//http://localhost:3000/weather/forecast-weather`
+    @Get('forecast-weather')
+    getForecastWeather() {
+        return this.weatherService.getForecastWeather();
+    }
 }
