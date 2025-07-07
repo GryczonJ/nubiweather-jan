@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { WeatherService } from './weather.service';
 
 //http://localhost:3000/weather/
@@ -10,13 +10,18 @@ export class WeatherController {
     }
 //http://localhost:3000/weather/realtime-weather
     @Get('realtime-weather')
-    getRealtimeWeather() {
-        return this.weatherService.getRealtimeWeather();
+    getRealtimeWeather(
+        @Query('location') location:string = 'Gliwice') 
+    {
+        return this.weatherService.getRealtimeWeather(location);
     }
 
 //http://localhost:3000/weather/forecast-weather`
     @Get('forecast-weather')
-    getForecastWeather() {
-        return this.weatherService.getForecastWeather();
+    getForecastWeather(
+        @Query('location')location:string = 'Gliwice', 
+        @Query('days') days:number = 14) 
+    {
+        return this.weatherService.getForecastWeather(location, days);
     }
 }
